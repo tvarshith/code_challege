@@ -11,7 +11,7 @@ An event consists of a timestamp, a string, and the hostname from which it origi
   Hostname 
  
 Events can come from multiple "orgs" (this system is multi­tenant, single instance of software 
-serves multiple customers). 
+iserves multiple customers). 
 Construct the simplest thing you can think of that'll store these events and handle the following 
 queries, both in reverse chronological order: 
 * the last N events for an org 
@@ -36,11 +36,14 @@ A seed database has already been provided.
 
 A simple __rake db: reset__ in the beginning  will generate the data to test the service.
 
+
 rake test:models will run the model tests.
+
 
 **Accessing the  last N events for an organization in reverse chronological order**
 
 `GET /organizations/:id/events/search_recent?count=n`
+
 
 **example**
 >`http://localhost:3000/organizations/1/events/search_recent?count=2`
@@ -52,6 +55,19 @@ __Accessing last N events for a specific host within an organization in reverse 
 
 **example**
 >`http://localhost:3000/organizations/2/events/search_recent?host_name=some_host_org1&count=4`
+
+
+>example:
+`http://localhost:3000/organizations/1/events/search_recent?count=2`
+
+__Accessing last N events for a specific host within an organization in reverse chronological order__
+
+`GET /organization/:id/events/search_recent?host_name=host1&count=n`
+
+
+>example:
+`http://localhost:3000/organizations/2/events/search_recent?host_name=some_host_org1&count=4`
+
 
 ### RAILS CONSOLE ###
 
@@ -65,6 +81,8 @@ We can modify the above queries to get specific results or make the desired chan
 
 >For example:
 the last N events for a specific host within an org
+
+
 ```ruby
 Event.where(host_name: 'some_host_org1', organization_id: 1)
 ```
