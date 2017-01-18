@@ -11,7 +11,7 @@ An event consists of a timestamp, a string, and the hostname from which it origi
   Hostname 
  
 Events can come from multiple "orgs" (this system is multi­tenant, single instance of software 
-iserves multiple customers). 
+serves multiple customers).
 Construct the simplest thing you can think of that'll store these events and handle the following 
 queries, both in reverse chronological order: 
 * the last N events for an org 
@@ -54,19 +54,8 @@ __Accessing last N events for a specific host within an organization in reverse 
 
 
 **example**
->`http://localhost:3000/organizations/2/events/search_recent?host_name=some_host_org1&count=4`
+>`http://localhost:3000/organizations/1/events/search_recent?host_name=some_host_org1&count=4`
 
-
->example:
-`http://localhost:3000/organizations/1/events/search_recent?count=2`
-
-__Accessing last N events for a specific host within an organization in reverse chronological order__
-
-`GET /organization/:id/events/search_recent?host_name=host1&count=n`
-
-
->example:
-`http://localhost:3000/organizations/2/events/search_recent?host_name=some_host_org1&count=4`
 
 
 ### RAILS CONSOLE ###
